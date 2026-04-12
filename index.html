@@ -3,27 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenMessenger - общайся с друзьями!</title>
+    <title>GreenMessenger - Общайся с друзьями!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0a0f0a;
             min-height: 100vh;
         }
-        
-        /* Авторизация */
-        .auth-screen {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 1rem;
-        }
+        .auth-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 1rem; }
         .auth-card {
             background: #0c120e;
             border-radius: 1.5rem;
@@ -33,14 +21,7 @@
             border: 1px solid #2ecc7144;
             text-align: center;
         }
-        .auth-card h1 {
-            color: #2ecc71;
-            margin-bottom: 1rem;
-        }
-        .auth-card p {
-            color: #8aae9a;
-            margin-bottom: 1rem;
-        }
+        .auth-card h1 { color: #2ecc71; margin-bottom: 1rem; }
         .auth-card input {
             width: 100%;
             padding: 0.8rem;
@@ -60,23 +41,10 @@
             border-radius: 1rem;
             font-weight: 600;
             cursor: pointer;
-            font-size: 1rem;
         }
-        .auth-card button:hover {
-            background: #27ae60;
-        }
-        .error-msg {
-            color: #e74c3c;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-        }
-        .success-msg {
-            color: #2ecc71;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-        }
+        .error-msg { color: #e74c3c; margin-top: 0.5rem; font-size: 0.85rem; }
+        .success-msg { color: #2ecc71; margin-top: 0.5rem; font-size: 0.85rem; }
         
-        /* Основной мессенджер */
         .messenger {
             display: none;
             height: 100vh;
@@ -90,17 +58,9 @@
             align-items: center;
             border-bottom: 1px solid #2ecc7133;
             flex-wrap: wrap;
-            gap: 0.5rem;
         }
-        .header h2 {
-            color: #2ecc71;
-            font-size: 1.2rem;
-        }
-        .header-buttons {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+        .header h2 { color: #2ecc71; font-size: 1.2rem; }
+        .header-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .header-btn {
             background: #1a2a1f;
             border: 1px solid #2ecc7144;
@@ -110,11 +70,7 @@
             cursor: pointer;
             font-size: 0.8rem;
         }
-        .main {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
+        .main { display: flex; flex: 1; overflow: hidden; }
         .sidebar {
             width: 300px;
             background: #0c120e;
@@ -140,24 +96,11 @@
             justify-content: center;
             font-size: 1.3rem;
             color: #2ecc71;
-            border: 1px solid #2ecc7144;
         }
-        .profile-info {
-            flex: 1;
-        }
-        .profile-name {
-            font-weight: 600;
-            color: #e0e0e0;
-            font-size: 0.9rem;
-        }
-        .profile-username {
-            font-size: 0.65rem;
-            color: #2ecc71;
-        }
-        .search-box {
-            padding: 0.8rem;
-            border-bottom: 1px solid #1e2a22;
-        }
+        .profile-info { flex: 1; }
+        .profile-name { font-weight: 600; color: #e0e0e0; font-size: 0.9rem; }
+        .profile-username { font-size: 0.65rem; color: #2ecc71; }
+        .search-box { padding: 0.8rem; border-bottom: 1px solid #1e2a22; }
         .search-box input {
             width: 100%;
             padding: 0.6rem;
@@ -166,10 +109,7 @@
             border-radius: 2rem;
             color: #e0e0e0;
         }
-        .chats-list {
-            flex: 1;
-            overflow-y: auto;
-        }
+        .chats-list { flex: 1; overflow-y: auto; }
         .chat-item {
             padding: 0.8rem 1rem;
             display: flex;
@@ -178,13 +118,8 @@
             cursor: pointer;
             border-bottom: 1px solid #162018;
         }
-        .chat-item:hover {
-            background: #122018;
-        }
-        .chat-item.active {
-            background: #1a2a1f;
-            border-left: 3px solid #2ecc71;
-        }
+        .chat-item:hover { background: #122018; }
+        .chat-item.active { background: #1a2a1f; border-left: 3px solid #2ecc71; }
         .chat-avatar {
             width: 45px;
             height: 45px;
@@ -196,72 +131,19 @@
             color: #2ecc71;
             font-size: 1.2rem;
         }
-        .chat-info {
-            flex: 1;
-        }
-        .chat-name {
-            color: #d4d4d4;
-            font-weight: 500;
-        }
-        .chat-last {
-            font-size: 0.7rem;
-            color: #6a8e7a;
-        }
-        .chat-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #0a100c;
-        }
-        .chat-header {
-            padding: 1rem;
-            background: #0c120e;
-            border-bottom: 1px solid #1e2a22;
-        }
-        .chat-header-name {
-            color: #e0e0e0;
-            font-weight: 600;
-        }
-        .messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .message {
-            max-width: 70%;
-            padding: 0.5rem 0.8rem;
-            border-radius: 1rem;
-        }
-        .message.outgoing {
-            background: #2ecc71;
-            color: #060a07;
-            align-self: flex-end;
-        }
-        .message.incoming {
-            background: #1a241e;
-            color: #d4d4d4;
-            align-self: flex-start;
-            border: 1px solid #2ecc7122;
-        }
-        .message-text {
-            font-size: 0.85rem;
-        }
-        .message-time {
-            font-size: 0.6rem;
-            opacity: 0.7;
-            margin-top: 0.2rem;
-            text-align: right;
-        }
-        .input-area {
-            padding: 1rem;
-            background: #0c120e;
-            display: flex;
-            gap: 0.5rem;
-            border-top: 1px solid #1e2a22;
-        }
+        .chat-info { flex: 1; }
+        .chat-name { color: #d4d4d4; font-weight: 500; }
+        .chat-last { font-size: 0.7rem; color: #6a8e7a; }
+        .chat-area { flex: 1; display: flex; flex-direction: column; background: #0a100c; }
+        .chat-header { padding: 1rem; background: #0c120e; border-bottom: 1px solid #1e2a22; }
+        .chat-header-name { color: #e0e0e0; font-weight: 600; }
+        .messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .message { max-width: 70%; padding: 0.5rem 0.8rem; border-radius: 1rem; }
+        .message.outgoing { background: #2ecc71; color: #060a07; align-self: flex-end; }
+        .message.incoming { background: #1a241e; color: #d4d4d4; align-self: flex-start; border: 1px solid #2ecc7122; }
+        .message-text { font-size: 0.85rem; }
+        .message-time { font-size: 0.6rem; opacity: 0.7; margin-top: 0.2rem; text-align: right; }
+        .input-area { padding: 1rem; background: #0c120e; display: flex; gap: 0.5rem; border-top: 1px solid #1e2a22; }
         .input-area input {
             flex: 1;
             padding: 0.7rem;
@@ -270,23 +152,9 @@
             border-radius: 2rem;
             color: #e0e0e0;
         }
-        .input-area button {
-            background: #2ecc71;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .empty-chat {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: #4a6a5a;
-        }
+        .input-area button { background: #2ecc71; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        .empty-chat { display: flex; align-items: center; justify-content: center; height: 100%; color: #4a6a5a; }
         
-        /* Модальные окна */
         .modal {
             display: none;
             position: fixed;
@@ -307,10 +175,7 @@
             max-width: 400px;
             border: 1px solid #2ecc7144;
         }
-        .modal-content h3 {
-            color: #2ecc71;
-            margin-bottom: 1rem;
-        }
+        .modal-content h3 { color: #2ecc71; margin-bottom: 1rem; }
         .modal-content input {
             width: 100%;
             padding: 0.7rem;
@@ -330,37 +195,48 @@
             cursor: pointer;
             margin-bottom: 0.5rem;
         }
-        .result-box {
-            margin-top: 1rem;
-            padding: 0.8rem;
+        .result-box { margin-top: 1rem; padding: 0.8rem; background: #1a2a1f; border-radius: 1rem; text-align: center; }
+        .friend-request {
             background: #1a2a1f;
-            border-radius: 1rem;
-            text-align: center;
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+        .demo-users { margin-top: 1rem; padding: 0.8rem; background: #1a2a1f; border-radius: 1rem; font-size: 0.7rem; text-align: left; }
+        .demo-users span { color: #2ecc71; }
+        .badge { background: #2ecc71; color: #060a07; border-radius: 1rem; padding: 0.1rem 0.4rem; font-size: 0.6rem; margin-left: 0.3rem; }
     </style>
 </head>
 <body>
 
-<!-- Экран авторизации -->
 <div id="authScreen" class="auth-screen">
     <div class="auth-card">
         <h1>🌿 GreenMessenger</h1>
-        <p>Введите номер телефона (+7)</p>
+        <p style="color:#8aae9a; margin-bottom:1rem;">Введите номер +7</p>
         <input type="tel" id="phoneInput" placeholder="(999) 123-45-67">
         <button onclick="sendCode()">📲 Получить код</button>
         <div id="authMsg"></div>
         <div style="margin-top: 1rem; font-size: 0.8rem; color: #5a7e6a;">
             Код: <strong style="color:#2ecc71;">1488</strong>
         </div>
+        <div class="demo-users">
+            <div style="color:#2ecc71; margin-bottom:0.3rem;">📱 Демо-пользователи:</div>
+            <div>• <span>@alex</span> — Алексей ( +7 999 123-45-67 )</div>
+            <div>• <span>@maria</span> — Мария ( +7 999 234-56-78 )</div>
+            <div>• <span>@dmitry</span> — Дмитрий ( +7 999 345-67-89 )</div>
+        </div>
     </div>
 </div>
 
-<!-- Основной мессенджер -->
 <div id="messenger" class="messenger">
     <div class="header">
-        <h2><i class="fab fa-telegram"></i> GreenMessenger</h2>
+        <h2>🌿 GreenMessenger</h2>
         <div class="header-buttons">
             <button class="header-btn" onclick="showAddFriendModal()">➕ Добавить друга</button>
+            <button class="header-btn" onclick="showFriendRequests()">📩 Заявки <span id="requestsBadge" class="badge" style="display:none;">0</span></button>
             <button class="header-btn" onclick="showProfile()">👤 Профиль</button>
             <button class="header-btn" onclick="logout()">🚪 Выйти</button>
         </div>
@@ -394,31 +270,47 @@
     </div>
 </div>
 
-<!-- Модальное окно добавления друга -->
 <div id="addFriendModal" class="modal">
     <div class="modal-content">
         <h3>➕ Добавить друга</h3>
-        <p style="color:#8aae9a; font-size:0.8rem;">Введите @username или номер +7</p>
-        <input type="text" id="friendSearchInput" placeholder="@username или +7 (999) 123-45-67">
-        <button onclick="searchFriend()">🔍 Найти</button>
+        <p style="color:#8aae9a; font-size:0.8rem;">Введите @username или номер</p>
+        <input type="text" id="friendSearchInput" placeholder="@alex или +7 999 123-45-67">
+        <button onclick="searchFriend()">🔍 Найти и отправить заявку</button>
         <button onclick="closeModal('addFriendModal')">Отмена</button>
         <div id="friendSearchResult"></div>
     </div>
 </div>
 
+<div id="requestsModal" class="modal">
+    <div class="modal-content">
+        <h3>📩 Заявки в друзья</h3>
+        <div id="requestsList" style="max-height: 300px; overflow-y: auto;"></div>
+        <button onclick="closeModal('requestsModal')">Закрыть</button>
+    </div>
+</div>
+
 <script>
     // ========== ДАННЫЕ ==========
-    const FIXED_CODE = "1488";
+    const DEMO_USERS = [
+        { id: "user1", phone: "+79991234567", username: "@alex", name: "Алексей Иванов" },
+        { id: "user2", phone: "+79992345678", username: "@maria", name: "Мария Смирнова" },
+        { id: "user3", phone: "+79993456789", username: "@dmitry", name: "Дмитрий Петров" }
+    ];
     
     let users = JSON.parse(localStorage.getItem('green_users') || '[]');
     let currentUser = JSON.parse(localStorage.getItem('green_current_user') || 'null');
     let messages = JSON.parse(localStorage.getItem('green_messages') || '{}');
     let friends = JSON.parse(localStorage.getItem('green_friends') || '{}');
+    let friendRequests = JSON.parse(localStorage.getItem('green_friend_requests') || '{}');
+    
+    DEMO_USERS.forEach(demo => {
+        if (!users.find(u => u.phone === demo.phone)) users.push(demo);
+    });
+    localStorage.setItem('green_users', JSON.stringify(users));
     
     let currentChatId = null;
     let pendingPhone = null;
     
-    // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
     function formatPhone(phone) {
         let d = phone.replace(/\D/g, '');
         if (d.length === 11 && d.startsWith('7')) {
@@ -436,37 +328,97 @@
         return { valid: true, normalized: '+7' + digits.substring(1) };
     }
     
-    function validateUsername(username) {
-        if (!username) return { valid: false, message: 'Введите username' };
-        if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
-            return { valid: false, message: 'Только латиница, цифры, _, 3-20 символов' };
-        }
-        if (users.some(u => u.username === `@${username}`)) {
-            return { valid: false, message: 'Username уже занят' };
-        }
-        return { valid: true };
-    }
-    
     function findUserByQuery(query) {
-        query = query.trim();
-        if (query.startsWith('@')) {
-            return users.find(u => u.username === query);
-        } else {
-            const validation = validatePhone(query);
-            if (validation.valid) {
-                return users.find(u => u.phone === validation.normalized);
-            }
+        query = query.trim().toLowerCase();
+        let username = query.startsWith('@') ? query : '@' + query;
+        let user = users.find(u => u.username === username);
+        if (user) return user;
+        
+        let digits = query.replace(/\D/g, '');
+        if (digits.length === 10) digits = '7' + digits;
+        if (digits.length === 11 && digits.startsWith('7')) {
+            let phone = '+7' + digits.substring(1);
+            return users.find(u => u.phone === phone);
         }
         return null;
     }
     
-    function addFriend(friendId) {
-        if (!currentUser) return false;
-        if (!friends[currentUser.id]) friends[currentUser.id] = [];
-        if (friends[currentUser.id].includes(friendId)) return false;
-        friends[currentUser.id].push(friendId);
-        localStorage.setItem('green_friends', JSON.stringify(friends));
+    function sendFriendRequest(toUserId, toUserName) {
+        if (!currentUser) return;
+        if (!friendRequests[toUserId]) friendRequests[toUserId] = [];
+        if (friendRequests[toUserId].some(r => r.from === currentUser.id)) {
+            alert('Вы уже отправили заявку этому пользователю!');
+            return false;
+        }
+        friendRequests[toUserId].push({
+            from: currentUser.id,
+            fromName: currentUser.name,
+            fromUsername: currentUser.username,
+            time: new Date().toISOString()
+        });
+        localStorage.setItem('green_friend_requests', JSON.stringify(friendRequests));
+        updateRequestsBadge();
         return true;
+    }
+    
+    function acceptFriendRequest(fromUserId, fromName) {
+        if (!currentUser) return;
+        if (!friends[currentUser.id]) friends[currentUser.id] = [];
+        if (!friends[fromUserId]) friends[fromUserId] = [];
+        
+        if (!friends[currentUser.id].includes(fromUserId)) {
+            friends[currentUser.id].push(fromUserId);
+        }
+        if (!friends[fromUserId].includes(currentUser.id)) {
+            friends[fromUserId].push(currentUser.id);
+        }
+        
+        if (friendRequests[currentUser.id]) {
+            friendRequests[currentUser.id] = friendRequests[currentUser.id].filter(r => r.from !== fromUserId);
+        }
+        
+        localStorage.setItem('green_friends', JSON.stringify(friends));
+        localStorage.setItem('green_friend_requests', JSON.stringify(friendRequests));
+        
+        updateRequestsBadge();
+        renderChats();
+        alert(`✅ ${fromName} теперь ваш друг!`);
+    }
+    
+    function getFriendRequests() {
+        if (!currentUser) return [];
+        return friendRequests[currentUser.id] || [];
+    }
+    
+    function updateRequestsBadge() {
+        const count = getFriendRequests().length;
+        const badge = document.getElementById('requestsBadge');
+        if (count > 0) {
+            badge.style.display = 'inline-block';
+            badge.textContent = count;
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+    
+    function showFriendRequests() {
+        const requests = getFriendRequests();
+        const container = document.getElementById('requestsList');
+        
+        if (requests.length === 0) {
+            container.innerHTML = '<div style="text-align:center;color:#4a6a5a;padding:1rem;">Нет заявок в друзья</div>';
+        } else {
+            container.innerHTML = requests.map(req => `
+                <div class="friend-request">
+                    <div>
+                        <div style="font-weight:600;">${escapeHtml(req.fromName)}</div>
+                        <div style="font-size:0.7rem;color:#2ecc71;">${req.fromUsername || ''}</div>
+                    </div>
+                    <button onclick="acceptFriendRequest('${req.from}', '${escapeHtml(req.fromName)}')" style="background:#2ecc71; padding:0.3rem 0.8rem; margin:0;">✅ Принять</button>
+                </div>
+            `).join('');
+        }
+        document.getElementById('requestsModal').style.display = 'flex';
     }
     
     function getFriends() {
@@ -503,7 +455,7 @@
         
         if (friend) {
             document.getElementById('chatHeader').style.display = 'block';
-            document.getElementById('chatHeaderName').innerHTML = `${friend.name} ${friend.username || ''}`;
+            document.getElementById('chatHeaderName').innerHTML = friend.name;
             document.getElementById('inputArea').style.display = 'flex';
         }
         
@@ -520,7 +472,6 @@
                 </div>
             `).join('');
         }
-        
         container.scrollTop = container.scrollHeight;
         document.getElementById('messageInput').focus();
     }
@@ -538,7 +489,7 @@
         );
         
         if (filtered.length === 0) {
-            container.innerHTML = '<div style="padding:1rem;text-align:center;color:#4a6a5a;">👋 Нет друзей. Добавьте через кнопку "+"</div>';
+            container.innerHTML = '<div style="padding:1rem;text-align:center;color:#4a6a5a;">👋 Нет друзей. Нажмите "Добавить друга" и отправьте заявку @alex</div>';
             return;
         }
         
@@ -586,7 +537,7 @@
         const friend = findUserByQuery(query);
         
         if (!friend) {
-            resultDiv.innerHTML = '<div class="result-box" style="color:#e74c3c;">❌ Пользователь не найден! Убедитесь что он зарегистрирован.</div>';
+            resultDiv.innerHTML = `<div class="result-box" style="color:#e74c3c;">❌ Пользователь не найден!<br>Попробуйте: @alex, @maria, @dmitry</div>`;
             return;
         }
         
@@ -605,16 +556,15 @@
             <div class="result-box">
                 <div style="font-weight:600;">${escapeHtml(friend.name)}</div>
                 <div style="font-size:0.7rem;color:#2ecc71;">${friend.username || friend.phone}</div>
-                <button onclick="confirmAddFriend('${friend.id}', '${escapeHtml(friend.name)}')" style="margin-top:0.5rem;background:#2ecc71;">✅ Добавить в друзья</button>
+                <button onclick="sendFriendRequestAndClose('${friend.id}', '${escapeHtml(friend.name)}')" style="margin-top:0.5rem;">📨 Отправить заявку</button>
             </div>
         `;
     }
     
-    function confirmAddFriend(friendId, friendName) {
-        addFriend(friendId);
-        renderChats();
+    function sendFriendRequestAndClose(friendId, friendName) {
+        sendFriendRequest(friendId, friendName);
         closeModal('addFriendModal');
-        alert(`✅ ${friendName} добавлен в друзья!`);
+        alert(`✅ Заявка отправлена ${friendName}! Когда он её примет, вы сможете общаться.`);
     }
     
     function showAddFriendModal() {
@@ -634,7 +584,6 @@
         document.getElementById('authScreen').style.display = 'flex';
     }
     
-    // ========== АВТОРИЗАЦИЯ ==========
     function sendCode() {
         const raw = document.getElementById('phoneInput').value;
         const validation = validatePhone(raw);
@@ -647,7 +596,7 @@
         pendingPhone = validation.normalized;
         const code = prompt('Введите код подтверждения (код: 1488)');
         
-        if (code === FIXED_CODE) {
+        if (code === "1488") {
             let user = users.find(u => u.phone === pendingPhone);
             
             if (!user) {
@@ -670,37 +619,32 @@
                 currentUser = user;
                 localStorage.setItem('green_current_user', JSON.stringify(currentUser));
                 
-                if (!friends[currentUser.id]) {
-                    friends[currentUser.id] = [];
-                    localStorage.setItem('green_friends', JSON.stringify(friends));
-                }
+                if (!friends[currentUser.id]) friends[currentUser.id] = [];
+                if (!friendRequests[currentUser.id]) friendRequests[currentUser.id] = [];
+                localStorage.setItem('green_friends', JSON.stringify(friends));
+                localStorage.setItem('green_friend_requests', JSON.stringify(friendRequests));
                 
                 document.getElementById('authScreen').style.display = 'none';
                 document.getElementById('messenger').style.display = 'flex';
                 updateProfileUI();
                 renderChats();
+                updateRequestsBadge();
             }
         } else {
             document.getElementById('authMsg').innerHTML = `<div class="error-msg">❌ Неверный код! Нужно: 1488</div>`;
         }
     }
     
-    // ========== ЗАПУСК ==========
     if (currentUser) {
         document.getElementById('authScreen').style.display = 'none';
         document.getElementById('messenger').style.display = 'flex';
         updateProfileUI();
         renderChats();
-    } else {
-        document.getElementById('authScreen').style.display = 'flex';
-        document.getElementById('messenger').style.display = 'none';
+        updateRequestsBadge();
     }
     
-    // Закрытие модалки по клику вне
     window.onclick = function(e) {
-        if (e.target.classList.contains('modal')) {
-            e.target.style.display = 'none';
-        }
+        if (e.target.classList.contains('modal')) e.target.style.display = 'none';
     }
 </script>
 </body>
