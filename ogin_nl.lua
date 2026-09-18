@@ -281,7 +281,7 @@ Button.MouseButton1Click:Connect(function()
             local NLWindow = ScreenGui:FindFirstChild("NLWindow")
             if not NLWindow then return end
 
-            local LeftMenu = NLWindow:FindFirstChildOfClass("Frame") -- LeftMenu
+            local LeftMenu = NLWindow:FindFirstChildOfClass("Frame")
             if not LeftMenu then return end
 
             local BottomProfile = Instance.new("Frame")
@@ -292,6 +292,7 @@ Button.MouseButton1Click:Connect(function()
             BottomProfile.Size = UDim2.new(1, 0, 0, 55)
             BottomProfile.BackgroundTransparency = 1
 
+            -- Аватарка (исправленная загрузка)
             local Avatar = Instance.new("ImageLabel")
             Avatar.Name = "Avatar"
             Avatar.Parent = BottomProfile
@@ -300,16 +301,25 @@ Button.MouseButton1Click:Connect(function()
             Avatar.Size = UDim2.new(0, 38, 0, 38)
             Avatar.BackgroundColor3 = Color3.fromRGB(30, 32, 40)
             Avatar.BorderSizePixel = 0
-            Avatar.Image = "rbxthumb://type=AvatarHeadShot&id="..game.Players.LocalPlayer.UserId.."&w=150&h=150"
             local avCorner = Instance.new("UICorner")
             avCorner.CornerRadius = UDim.new(1, 0)
             avCorner.Parent = Avatar
 
+            local success, thumb = pcall(function()
+                return game.Players:GetUserThumbnailAsync(
+                    game.Players.LocalPlayer.UserId,
+                    Enum.ThumbnailType.HeadShot,
+                    Enum.ThumbnailSize.Size150x150
+                )
+            end)
+            Avatar.Image = success and thumb or "rbxassetid://120358385035996"
+
+            -- Ник
             local Username = Instance.new("TextLabel")
             Username.Name = "Username"
             Username.Parent = BottomProfile
             Username.BackgroundTransparency = 1
-            Username.Position = UDim2.new(0, 58, 0, 12)
+            Username.Position = UDim2.new(0, 58, 0, 10)
             Username.Size = UDim2.new(1, -65, 0, 15)
             Username.Font = Enum.Font.GothamBold
             Username.Text = game.Players.LocalPlayer.DisplayName
@@ -317,14 +327,15 @@ Button.MouseButton1Click:Connect(function()
             Username.TextSize = 13
             Username.TextXAlignment = Enum.TextXAlignment.Left
 
+            -- Дата + флаг
             local Expire = Instance.new("TextLabel")
             Expire.Name = "Expire"
             Expire.Parent = BottomProfile
             Expire.BackgroundTransparency = 1
-            Expire.Position = UDim2.new(0, 58, 0, 28)
+            Expire.Position = UDim2.new(0, 58, 0, 27)
             Expire.Size = UDim2.new(1, -65, 0, 12)
             Expire.Font = Enum.Font.Gotham
-            Expire.Text = "Till: 22.01.06 26"
+            Expire.Text = "4d2f   Till: 22.01.06 26"
             Expire.TextColor3 = Color3.fromRGB(78, 127, 252)
             Expire.TextSize = 11
             Expire.TextXAlignment = Enum.TextXAlignment.Left
